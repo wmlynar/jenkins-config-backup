@@ -63,9 +63,9 @@ sed -i &quot;s/$vagrant_dir_pattern/$current_dir_pattern/g&quot; allocrypt/junit
 #php depend
 #pdepend --summary-xml=allocrypt/pdepend.xml allocrypt/app/
 #php pmd
-phpmd allocrypt/app/ xml cleancode,codesize,controversial,design,naming,unusedcode --reportfile allocrypt/phpmd.xml
+#phpmd allocrypt/app/ xml cleancode,codesize,controversial,design,naming,unusedcode --reportfile allocrypt/phpmd.xml
 #php cpd
-phpcpd allocrypt/app/ --log-pmd=allocrypt/phpcpd.xml</command>
+#phpcpd allocrypt/app/ --log-pmd=allocrypt/phpcpd.xml</command>
     </hudson.tasks.Shell>
     <hudson.plugins.sonar.SonarRunnerBuilder plugin="sonar@2.6.1">
       <project></project>
