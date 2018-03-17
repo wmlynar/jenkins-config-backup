@@ -32,6 +32,21 @@
   </triggers>
   <concurrentBuild>false</concurrentBuild>
   <builders>
+    <org.jenkinsci.plugins.vagrant.VagrantUpCommand plugin="vagrant@1.0.2">
+      <destroyOnError>true</destroyOnError>
+      <provider></provider>
+      <wrapper>
+        <vagrantFile>./Vagrantfile</vagrantFile>
+        <vagrantVm></vagrantVm>
+      </wrapper>
+      <dontKillMe>true</dontKillMe>
+    </org.jenkinsci.plugins.vagrant.VagrantUpCommand>
+    <org.jenkinsci.plugins.vagrant.VagrantDestroyCommand plugin="vagrant@1.0.2">
+      <wrapper>
+        <vagrantFile>./Vagrantfile</vagrantFile>
+        <vagrantVm></vagrantVm>
+      </wrapper>
+    </org.jenkinsci.plugins.vagrant.VagrantDestroyCommand>
     <hudson.plugins.sonar.SonarRunnerBuilder plugin="sonar@2.6.1">
       <project></project>
       <properties>sonar.language=php
@@ -58,21 +73,6 @@ sed -i &quot;s/$vagrant_dir_pattern/$current_dir_pattern/g&quot; allocrypt/cover
 sed -i &quot;s/$vagrant_dir_pattern/$current_dir_pattern/g&quot; allocrypt/junit.xml
 </command>
     </hudson.tasks.Shell>
-    <org.jenkinsci.plugins.vagrant.VagrantUpCommand plugin="vagrant@1.0.2">
-      <destroyOnError>true</destroyOnError>
-      <provider></provider>
-      <wrapper>
-        <vagrantFile>./Vagrantfile</vagrantFile>
-        <vagrantVm></vagrantVm>
-      </wrapper>
-      <dontKillMe>true</dontKillMe>
-    </org.jenkinsci.plugins.vagrant.VagrantUpCommand>
-    <org.jenkinsci.plugins.vagrant.VagrantDestroyCommand plugin="vagrant@1.0.2">
-      <wrapper>
-        <vagrantFile>./Vagrantfile</vagrantFile>
-        <vagrantVm></vagrantVm>
-      </wrapper>
-    </org.jenkinsci.plugins.vagrant.VagrantDestroyCommand>
   </builders>
   <publishers>
     <org.jenkinsci.plugins.cloverphp.CloverPHPPublisher plugin="cloverphp@0.5">
