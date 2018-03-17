@@ -39,8 +39,14 @@
         <vagrantFile>./Vagrantfile</vagrantFile>
         <vagrantVm></vagrantVm>
       </wrapper>
-      <dontKillMe>false</dontKillMe>
+      <dontKillMe>true</dontKillMe>
     </org.jenkinsci.plugins.vagrant.VagrantUpCommand>
+    <org.jenkinsci.plugins.vagrant.VagrantDestroyCommand plugin="vagrant@1.0.2">
+      <wrapper>
+        <vagrantFile>./Vagrantfile</vagrantFile>
+        <vagrantVm></vagrantVm>
+      </wrapper>
+    </org.jenkinsci.plugins.vagrant.VagrantDestroyCommand>
     <hudson.plugins.sonar.SonarRunnerBuilder plugin="sonar@2.6.1">
       <project></project>
       <properties>sonar.language=php
