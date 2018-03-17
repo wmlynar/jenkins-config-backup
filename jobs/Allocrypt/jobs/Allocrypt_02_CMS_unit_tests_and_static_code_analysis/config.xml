@@ -51,7 +51,10 @@ sed -i &quot;s/$vagrant_dir_pattern/$current_dir_pattern/g&quot; allocrypt/junit
       <unstableReturn>2</unstableReturn>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command>#php code shiffer (checkstyle)
+      <command>echo &quot;Executing additional php tools&quot;
+pwd
+
+#php code shiffer (checkstyle)
 phpcs --report=checkstyle --report-file=allocrypt/checkstyle.xml allocrypt/app/
 #php depend
 pdepend --jdepend-xml=allocrypt/pdepend.xml --jdepend-chart=allocrypt/dependencies.svg --overview-pyramid=allocrypt/overview-pyramid.svg allocrypt/app/
