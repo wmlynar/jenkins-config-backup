@@ -78,7 +78,7 @@ sed -i &quot;s/$vagrant_dir_pattern/$current_dir_pattern/g&quot; allocrypt/junit
       <allowEmptyResults>false</allowEmptyResults>
     </hudson.tasks.junit.JUnitResultArchiver>
     <hudson.plugins.clover.CloverPublisher plugin="clover@4.9.0">
-      <cloverReportDir></cloverReportDir>
+      <cloverReportDir>allocrypt</cloverReportDir>
       <cloverReportFileName>allocrypt/coverage.xml</cloverReportFileName>
       <healthyTarget>
         <methodCoverage>70</methodCoverage>
