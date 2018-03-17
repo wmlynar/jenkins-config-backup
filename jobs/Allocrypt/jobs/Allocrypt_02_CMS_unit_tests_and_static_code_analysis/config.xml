@@ -41,12 +41,6 @@
       </wrapper>
       <dontKillMe>true</dontKillMe>
     </org.jenkinsci.plugins.vagrant.VagrantUpCommand>
-    <org.jenkinsci.plugins.vagrant.VagrantDestroyCommand plugin="vagrant@1.0.2">
-      <wrapper>
-        <vagrantFile>./Vagrantfile</vagrantFile>
-        <vagrantVm></vagrantVm>
-      </wrapper>
-    </org.jenkinsci.plugins.vagrant.VagrantDestroyCommand>
     <hudson.tasks.Shell>
       <command>#replace the paths so scanner can find the files
 vagrant_dir=&apos;/home/vagrant/app/&apos;
@@ -73,6 +67,12 @@ sonar.php.coverage.reportPath=allocrypt/coverage.xml
       <jdk>(Inherit From Job)</jdk>
       <task></task>
     </hudson.plugins.sonar.SonarRunnerBuilder>
+    <org.jenkinsci.plugins.vagrant.VagrantDestroyCommand plugin="vagrant@1.0.2">
+      <wrapper>
+        <vagrantFile>./Vagrantfile</vagrantFile>
+        <vagrantVm></vagrantVm>
+      </wrapper>
+    </org.jenkinsci.plugins.vagrant.VagrantDestroyCommand>
   </builders>
   <publishers>
     <org.jenkinsci.plugins.cloverphp.CloverPHPPublisher plugin="cloverphp@0.5">
