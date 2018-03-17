@@ -33,21 +33,25 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>#vagrant up
+      <command># execute unit tests
+
+#vagrant up
 #vagrant ssh -- -t &apos;$HOME/app/allocrypt/vendor/bin/phpunit -c $HOME/app/allocrypt/phpunit.xml&apos;
-#vagrant destroy</command>
-      <unstableReturn>2</unstableReturn>
-    </hudson.tasks.Shell>
-    <hudson.tasks.Shell>
-      <command>#replace the paths inside xml files generated inside vagrant, so sonar scanner can find the files
+#vagrant destroy
+
+#replace the paths inside xml files generated inside vagrant, so sonar scanner can find the files
+
 vagrant_dir=&apos;/home/vagrant/app/&apos;
 vagrant_dir_pattern=$(echo $vagrant_dir | sed &apos;s/\//\\\//g&apos;)
 current_dir=`pwd`/
 current_dir_pattern=$(echo $current_dir | sed &apos;s/\//\\\//g&apos;)
-sed -i &quot;s/$vagrant_dir_pattern/$current_dir_pattern/g&quot; allocrypt/coverage.xml
-sed -i &quot;s/$vagrant_dir_pattern/$current_dir_pattern/g&quot; allocrypt/junit.xml
 
-#php code shiffer (checkstyle)
+sed -i &quot;s/$vagrant_dir_pattern/$current_dir_pattern/g&quot; allocrypt/coverage.xml
+sed -i &quot;s/$vagrant_dir_pattern/$current_dir_pattern/g&quot; allocrypt/junit.xml</command>
+      <unstableReturn>2</unstableReturn>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>#php code shiffer (checkstyle)
 phpcs --report=checkstyle --report-file=allocrypt/checkstyle.xml allocrypt/app/
 #php depend
 pdepend --jdepend-xml=allocrypt/pdepend.xml --jdepend-chart=allocrypt/dependencies.svg --overview-pyramid=allocrypt/overview-pyramid.svg allocrypt/app/
@@ -67,8 +71,7 @@ sonar.projectVersion=1
 sonar.sources=allocrypt/app
 sonar.tests=allocrypt/tests
 sonar.php.tests.reportPath=allocrypt/junit.xml
-sonar.php.coverage.reportPath=allocrypt/coverage.xml
-#sonar.clover.reportPath=allocrypt/coverage.xml</properties>
+sonar.php.coverage.reportPath=allocrypt/coverage.xml</properties>
       <javaOpts></javaOpts>
       <additionalArguments></additionalArguments>
       <jdk>(Inherit From Job)</jdk>
