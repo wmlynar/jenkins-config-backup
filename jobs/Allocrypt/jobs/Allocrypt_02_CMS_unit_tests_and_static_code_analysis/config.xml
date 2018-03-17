@@ -39,7 +39,7 @@
         <vagrantFile>./Vagrantfile</vagrantFile>
         <vagrantVm></vagrantVm>
       </wrapper>
-      <dontKillMe>true</dontKillMe>
+      <dontKillMe>false</dontKillMe>
     </org.jenkinsci.plugins.vagrant.VagrantUpCommand>
     <hudson.plugins.sonar.SonarRunnerBuilder plugin="sonar@2.6.1">
       <project></project>
