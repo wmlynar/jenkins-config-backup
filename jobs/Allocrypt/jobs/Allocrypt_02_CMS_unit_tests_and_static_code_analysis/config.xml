@@ -171,9 +171,6 @@ sonar.php.coverage.reportPath=allocrypt/coverage.xml
       <reportPattern>allocrypt/crap4j.xml</reportPattern>
       <healthThreshold></healthThreshold>
     </hudson.plugins.crap4j.Crap4JPublisher>
-    <hudson.plugins.jdepend.JDependRecorder plugin="jdepend@1.3.0">
-      <configuredJDependFile>allocrypt/pdepend.xml</configuredJDependFile>
-    </hudson.plugins.jdepend.JDependRecorder>
   </publishers>
   <buildWrappers/>
 </project>
