@@ -35,9 +35,9 @@
     <hudson.tasks.Shell>
       <command># execute unit tests
 
-#vagrant up
-#vagrant ssh -- -t &apos;$HOME/app/allocrypt/vendor/bin/phpunit -c $HOME/app/allocrypt/phpunit.xml&apos;
-#vagrant destroy
+vagrant up
+vagrant ssh -- -t &apos;$HOME/app/allocrypt/vendor/bin/phpunit -c $HOME/app/allocrypt/phpunit.xml&apos;
+vagrant destroy
 
 #replace the paths inside xml files generated inside vagrant, so sonar scanner can find the files
 
