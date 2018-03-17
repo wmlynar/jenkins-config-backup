@@ -56,6 +56,7 @@ phpcpd allocrypt/app/ --log-pmd=allocrypt/phpcpd.xml
 
 echo $?
 </command>
+      <unstableReturn>2</unstableReturn>
     </hudson.tasks.Shell>
     <hudson.plugins.sonar.SonarRunnerBuilder plugin="sonar@2.6.1">
       <project></project>
