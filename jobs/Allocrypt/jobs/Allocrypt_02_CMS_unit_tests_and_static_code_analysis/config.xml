@@ -49,7 +49,8 @@ sonar.php.coverage.reportPath=allocrypt/coverage.xml
       <task></task>
     </hudson.plugins.sonar.SonarRunnerBuilder>
     <hudson.tasks.Shell>
-      <command>vagrant_dir=&apos;/home/vagrant/app/&apos;
+      <command>#replace the paths so scanner can find the files
+vagrant_dir=&apos;/home/vagrant/app/&apos;
 vagrant_dir_pattern=$(echo $vagrant_dir | sed &apos;s/\//\\\//g&apos;)
 current_dir=`pwd`/
 current_dir_pattern=$(echo $current_dir | sed &apos;s/\//\\\//g&apos;)
