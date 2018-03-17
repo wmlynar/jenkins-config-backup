@@ -47,14 +47,14 @@ current_dir_pattern=$(echo $current_dir | sed &apos;s/\//\\\//g&apos;)
 sed -i &quot;s/$vagrant_dir_pattern/$current_dir_pattern/g&quot; allocrypt/coverage.xml
 sed -i &quot;s/$vagrant_dir_pattern/$current_dir_pattern/g&quot; allocrypt/junit.xml
 
+#php code shiffer (checkstyle)
+phpcs --report=checkstyle --report-file=allocrypt/checkstyle.xml allocrypt/app/
 #php depend
 pdepend --jdepend-xml=allocrypt/pdepend.xml --jdepend-chart=allocrypt/dependencies.svg --overview-pyramid=allocrypt/overview-pyramid.svg allocrypt/app/
 #php pmd
 phpmd allocrypt/app/ xml cleancode,codesize,controversial,design,naming,unusedcode --reportfile allocrypt/phpmd.xml
 #php cpd
 phpcpd allocrypt/app/ --log-pmd=allocrypt/phpcpd.xml
-
-echo $?
 </command>
       <unstableReturn>2</unstableReturn>
     </hudson.tasks.Shell>
@@ -76,6 +76,39 @@ sonar.php.coverage.reportPath=allocrypt/coverage.xml
     </hudson.plugins.sonar.SonarRunnerBuilder>
   </builders>
   <publishers>
+    <hudson.plugins.checkstyle.CheckStylePublisher plugin="checkstyle@3.50">
+      <healthy></healthy>
+      <unHealthy></unHealthy>
+      <thresholdLimit>low</thresholdLimit>
+      <pluginName>[CHECKSTYLE] </pluginName>
+      <defaultEncoding></defaultEncoding>
+      <canRunOnFailed>false</canRunOnFailed>
+      <usePreviousBuildAsReference>false</usePreviousBuildAsReference>
+      <useStableBuildAsReference>false</useStableBuildAsReference>
+      <useDeltaValues>false</useDeltaValues>
+      <thresholds plugin="analysis-core@1.95">
+        <unstableTotalAll></unstableTotalAll>
+        <unstableTotalHigh></unstableTotalHigh>
+        <unstableTotalNormal></unstableTotalNormal>
+        <unstableTotalLow></unstableTotalLow>
+        <unstableNewAll></unstableNewAll>
+        <unstableNewHigh></unstableNewHigh>
+        <unstableNewNormal></unstableNewNormal>
+        <unstableNewLow></unstableNewLow>
+        <failedTotalAll></failedTotalAll>
+        <failedTotalHigh></failedTotalHigh>
+        <failedTotalNormal></failedTotalNormal>
+        <failedTotalLow></failedTotalLow>
+        <failedNewAll></failedNewAll>
+        <failedNewHigh></failedNewHigh>
+        <failedNewNormal></failedNewNormal>
+        <failedNewLow></failedNewLow>
+      </thresholds>
+      <shouldDetectModules>false</shouldDetectModules>
+      <dontComputeNew>true</dontComputeNew>
+      <doNotResolveRelativePaths>false</doNotResolveRelativePaths>
+      <pattern>allocrypt/checkstyle.xml</pattern>
+    </hudson.plugins.checkstyle.CheckStylePublisher>
     <hudson.plugins.pmd.PmdPublisher plugin="pmd@3.50">
       <healthy></healthy>
       <unHealthy></unHealthy>
