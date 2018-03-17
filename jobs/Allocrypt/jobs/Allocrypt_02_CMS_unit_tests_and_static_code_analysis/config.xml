@@ -47,6 +47,16 @@
         <vagrantVm></vagrantVm>
       </wrapper>
     </org.jenkinsci.plugins.vagrant.VagrantDestroyCommand>
+    <hudson.tasks.Shell>
+      <command>#replace the paths so scanner can find the files
+vagrant_dir=&apos;/home/vagrant/app/&apos;
+vagrant_dir_pattern=$(echo $vagrant_dir | sed &apos;s/\//\\\//g&apos;)
+current_dir=`pwd`/
+current_dir_pattern=$(echo $current_dir | sed &apos;s/\//\\\//g&apos;)
+sed -i &quot;s/$vagrant_dir_pattern/$current_dir_pattern/g&quot; allocrypt/coverage.xml
+sed -i &quot;s/$vagrant_dir_pattern/$current_dir_pattern/g&quot; allocrypt/junit.xml
+</command>
+    </hudson.tasks.Shell>
     <hudson.plugins.sonar.SonarRunnerBuilder plugin="sonar@2.6.1">
       <project></project>
       <properties>sonar.language=php
@@ -63,16 +73,6 @@ sonar.php.coverage.reportPath=allocrypt/coverage.xml
       <jdk>(Inherit From Job)</jdk>
       <task></task>
     </hudson.plugins.sonar.SonarRunnerBuilder>
-    <hudson.tasks.Shell>
-      <command>#replace the paths so scanner can find the files
-vagrant_dir=&apos;/home/vagrant/app/&apos;
-vagrant_dir_pattern=$(echo $vagrant_dir | sed &apos;s/\//\\\//g&apos;)
-current_dir=`pwd`/
-current_dir_pattern=$(echo $current_dir | sed &apos;s/\//\\\//g&apos;)
-sed -i &quot;s/$vagrant_dir_pattern/$current_dir_pattern/g&quot; allocrypt/coverage.xml
-sed -i &quot;s/$vagrant_dir_pattern/$current_dir_pattern/g&quot; allocrypt/junit.xml
-</command>
-    </hudson.tasks.Shell>
   </builders>
   <publishers>
     <org.jenkinsci.plugins.cloverphp.CloverPHPPublisher plugin="cloverphp@0.5">
@@ -104,11 +104,5 @@ sed -i &quot;s/$vagrant_dir_pattern/$current_dir_pattern/g&quot; allocrypt/junit
       <failingTarget/>
     </hudson.plugins.clover.CloverPublisher>
   </publishers>
-  <buildWrappers>
-    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.34">
-      <deleteDirs>false</deleteDirs>
-      <cleanupParameter></cleanupParameter>
-      <externalDelete></externalDelete>
-    </hudson.plugins.ws__cleanup.PreBuildCleanup>
-  </buildWrappers>
+  <buildWrappers/>
 </project>
