@@ -43,6 +43,7 @@
     </org.jenkinsci.plugins.vagrant.VagrantUpCommand>
     <hudson.tasks.Shell>
       <command>vagrant ssh -- -t &apos;$HOME/app/allocrypt/vendor/bin/phpunit -c $HOME/app/allocrypt/phpunit.xml&apos;</command>
+      <unstableReturn>2</unstableReturn>
     </hudson.tasks.Shell>
     <org.jenkinsci.plugins.vagrant.VagrantDestroyCommand plugin="vagrant@1.0.2">
       <wrapper>
