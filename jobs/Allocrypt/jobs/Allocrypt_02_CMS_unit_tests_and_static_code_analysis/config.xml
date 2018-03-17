@@ -32,21 +32,12 @@
   </triggers>
   <concurrentBuild>false</concurrentBuild>
   <builders>
-    <org.jenkinsci.plugins.vagrant.VagrantUpCommand plugin="vagrant@1.0.2">
-      <destroyOnError>true</destroyOnError>
-      <provider></provider>
-      <wrapper>
-        <vagrantFile>./Vagrantfile</vagrantFile>
-        <vagrantVm></vagrantVm>
-      </wrapper>
-      <dontKillMe>true</dontKillMe>
-    </org.jenkinsci.plugins.vagrant.VagrantUpCommand>
     <hudson.tasks.Shell>
       <command># execute unit tests
 
-#vagrant up
+vagrant up
 vagrant ssh -- -t &apos;$HOME/app/allocrypt/vendor/bin/phpunit -c $HOME/app/allocrypt/phpunit.xml&apos;
-#vagrant destroy
+vagrant destroy
 
 #replace the paths inside xml files generated inside vagrant, so sonar scanner can find the files
 
@@ -59,12 +50,6 @@ sed -i &quot;s/$vagrant_dir_pattern/$current_dir_pattern/g&quot; allocrypt/cover
 sed -i &quot;s/$vagrant_dir_pattern/$current_dir_pattern/g&quot; allocrypt/junit.xml</command>
       <unstableReturn>2</unstableReturn>
     </hudson.tasks.Shell>
-    <org.jenkinsci.plugins.vagrant.VagrantDestroyCommand plugin="vagrant@1.0.2">
-      <wrapper>
-        <vagrantFile>./Vagrantfile</vagrantFile>
-        <vagrantVm></vagrantVm>
-      </wrapper>
-    </org.jenkinsci.plugins.vagrant.VagrantDestroyCommand>
     <hudson.tasks.Shell>
       <command>#php code shiffer (checkstyle)
 phpcs --report=checkstyle --report-file=allocrypt/checkstyle.xml allocrypt/app/
