@@ -3,7 +3,7 @@
   <scm class="hudson.plugins.scm_sync_configuration.scms.ScmSyncGitSCM"/>
   <scmRepositoryUrl>scm:git:git@github.com:wmlynar/jenkins-config-backup.git</scmRepositoryUrl>
   <noUserCommitMessage>true</noUserCommitMessage>
-  <displayStatus>true</displayStatus>
+  <displayStatus>false</displayStatus>
   <commitMessagePattern>[message]</commitMessagePattern>
   <manualSynchronizationIncludes>
     <include></include>
