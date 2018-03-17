@@ -131,6 +131,10 @@ sonar.php.coverage.reportPath=allocrypt/coverage.xml
       <healthScaleFactor>1.0</healthScaleFactor>
       <allowEmptyResults>false</allowEmptyResults>
     </hudson.tasks.junit.JUnitResultArchiver>
+    <hudson.plugins.crap4j.Crap4JPublisher plugin="crap4j@0.9">
+      <reportPattern>allocrypt/crap4j.xml</reportPattern>
+      <healthThreshold></healthThreshold>
+    </hudson.plugins.crap4j.Crap4JPublisher>
   </publishers>
   <buildWrappers/>
 </project>
