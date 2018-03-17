@@ -72,7 +72,7 @@ sonar.sources=allocrypt/app
 sonar.tests=allocrypt/tests
 sonar.php.tests.reportPath=allocrypt/junit.xml
 sonar.php.coverage.reportPath=allocrypt/coverage.xml
-sonar.profile=php-sonar-way-22680</properties>
+sonar.profile=Sonar way</properties>
       <javaOpts></javaOpts>
       <additionalArguments></additionalArguments>
       <jdk>(Inherit From Job)</jdk>
