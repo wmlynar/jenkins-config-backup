@@ -32,25 +32,12 @@
   </triggers>
   <concurrentBuild>false</concurrentBuild>
   <builders>
-    <org.jenkinsci.plugins.vagrant.VagrantUpCommand plugin="vagrant@1.0.2">
-      <destroyOnError>true</destroyOnError>
-      <provider></provider>
-      <wrapper>
-        <vagrantFile>./Vagrantfile</vagrantFile>
-        <vagrantVm></vagrantVm>
-      </wrapper>
-      <dontKillMe>true</dontKillMe>
-    </org.jenkinsci.plugins.vagrant.VagrantUpCommand>
     <hudson.tasks.Shell>
-      <command>#vagrant ssh -- -t &apos;$HOME/app/allocrypt/vendor/bin/phpunit -c $HOME/app/allocrypt/phpunit.xml&apos;</command>
+      <command>#vagrant up
+#vagrant ssh -- -t &apos;$HOME/app/allocrypt/vendor/bin/phpunit -c $HOME/app/allocrypt/phpunit.xml&apos;
+#vagrant destroy</command>
       <unstableReturn>2</unstableReturn>
     </hudson.tasks.Shell>
-    <org.jenkinsci.plugins.vagrant.VagrantDestroyCommand plugin="vagrant@1.0.2">
-      <wrapper>
-        <vagrantFile>./Vagrantfile</vagrantFile>
-        <vagrantVm></vagrantVm>
-      </wrapper>
-    </org.jenkinsci.plugins.vagrant.VagrantDestroyCommand>
     <hudson.tasks.Shell>
       <command>#replace the paths inside xml files generated inside vagrant, so sonar scanner can find the files
 vagrant_dir=&apos;/home/vagrant/app/&apos;
