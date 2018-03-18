@@ -33,9 +33,11 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
+      <command>vagrant up
+</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
       <command># execute unit tests
-
-vagrant up
 vagrant ssh -- -t &apos;$HOME/app/allocrypt/vendor/bin/phpunit -c $HOME/app/allocrypt/phpunit.xml&apos;
 </command>
       <unstableReturn>2</unstableReturn>
