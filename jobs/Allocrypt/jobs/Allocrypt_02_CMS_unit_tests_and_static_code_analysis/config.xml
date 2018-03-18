@@ -74,7 +74,7 @@ pdepend --jdepend-xml=allocrypt/pdepend.xml --jdepend-chart=allocrypt/dependenci
     <hudson.tasks.Shell>
       <command>#php pmd
 echo &quot;Executing phpmd&quot;
-#phpmd allocrypt/app/ xml cleancode,codesize,controversial,design,naming,unusedcode --reportfile allocrypt/phpmd.xml
+#phpmd allocrypt/app/ xml cleancode,codesize,controversial,design,naming,unusedcode --reportfile allocrypt/phpmd.xml --coverage allocrypt/coverage.xml
 
 #exclude rule StaticAccess
 cat &gt; my_cleancode.xml &lt;&lt; EOF
@@ -93,7 +93,7 @@ cat &gt; my_cleancode.xml &lt;&lt; EOF
 &lt;/ruleset&gt;
 EOF
 
-phpmd allocrypt/app/ xml my_cleancode.xml,codesize,controversial,design,naming,unusedcode --reportfile allocrypt/phpmd.xml
+phpmd allocrypt/app/ xml my_cleancode.xml,codesize,controversial,design,naming,unusedcode --reportfile allocrypt/phpmd.xml --coverage allocrypt/coverage.xml
 </command>
       <unstableReturn>2</unstableReturn>
     </hudson.tasks.Shell>
