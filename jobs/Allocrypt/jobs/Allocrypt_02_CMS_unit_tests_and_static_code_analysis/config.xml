@@ -68,6 +68,7 @@ cat &gt; my_phpcs.xml &lt;&lt; EOF
  &lt;rule ref=&quot;PEAR&quot;&gt;
   &lt;exclude name=&quot;PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket&quot;/&gt;
   &lt;exclude name=&quot;PEAR.Functions.FunctionCallSignature.CloseBracketLine&quot;/&gt;
+  &lt;exclude name=&quot;PEAR.Functions.FunctionCallSignature.Indent&quot;/&gt;
   &lt;exclude name=&quot;PEAR.Commenting.ClassComment.Missing&quot;/&gt;
   &lt;exclude name=&quot;PEAR.Commenting.FileComment.Missing&quot;/&gt;
   &lt;exclude name=&quot;PEAR.Commenting.FunctionComment.Missing&quot;/&gt;
@@ -82,6 +83,11 @@ cat &gt; my_phpcs.xml &lt;&lt; EOF
   &lt;exclude name=&quot;Generic.Functions.FunctionCallArgumentSpacing.NoSpaceAfterComma&quot;/&gt;
   &lt;exclude name=&quot;Generic.Commenting.DocComment.SpacingBeforeTags&quot;/&gt;
   &lt;exclude name=&quot;Generic.Files.LineLength.TooLong&quot;/&gt;
+  
+  &lt;!-- rzeczy wywalone, zeby sie nie przypierdalac, ale do odkomentowania --&gt;
+  &lt;exclude name=&quot;PEAR.ControlStructures.ControlSignature.Found&quot;/&gt;
+  &lt;exclude name=&quot;Generic.Commenting.DocComment.TagValueIndent&quot;/&gt;
+  &lt;exclude name=&quot;Generic.Commenting.DocComment.NonParamGroup&quot;/&gt;
  &lt;/rule&gt;
 &lt;/ruleset&gt;
 EOF
