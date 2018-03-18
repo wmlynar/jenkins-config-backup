@@ -77,22 +77,23 @@ cat &gt; my_phpcs.xml &lt;&lt; EOF
   &lt;exclude name=&quot;PEAR.WhiteSpace&quot;/&gt;
   &lt;exclude name=&quot;PEAR.ControlStructures.MultiLineCondition.StartWithBoolean&quot;/&gt;
   &lt;exclude name=&quot;PEAR.ControlStructures.MultiLineCondition.CloseBracketNewLine&quot;/&gt;
-  
+  &lt;exclude name=&quot;PEAR.NamingConventions.ValidFunctionName.PrivateNoUnderscore&quot;/&gt;
+  &lt;exclude name=&quot;PEAR.NamingConventions.ValidVariableName.PrivateNoUnderscore&quot;/&gt;
   &lt;exclude name=&quot;Squiz.Commenting.DocCommentAlignment.SpaceAfterStar&quot;/&gt;
   &lt;exclude name=&quot;Squiz.Commenting.InlineComment.SpacingBefore&quot;/&gt;
   &lt;exclude name=&quot;Squiz.Commenting.FunctionComment.SpacingAfterParamType&quot;/&gt;
-  
   &lt;exclude name=&quot;Generic.Functions.FunctionCallArgumentSpacing.NoSpaceAfterComma&quot;/&gt;
   &lt;exclude name=&quot;Generic.Commenting.DocComment.SpacingBeforeTags&quot;/&gt;
   &lt;exclude name=&quot;Generic.Files.LineLength.TooLong&quot;/&gt;
   
   &lt;!-- rzeczy wywalone, zeby sie nie przypierdalac, ale do odkomentowania --&gt;
-  &lt;exclude name=&quot;PEAR.NamingConventions.ValidFunctionName.PrivateNoUnderscore&quot;/&gt;
+  
   &lt;exclude name=&quot;PEAR.ControlStructures.ControlSignature.Found&quot;/&gt;
   &lt;exclude name=&quot;Generic.Commenting.DocComment.TagValueIndent&quot;/&gt;
   &lt;exclude name=&quot;Generic.Commenting.DocComment.NonParamGroup&quot;/&gt;
   
   &lt;!-- do odkomentowania - dokumentacja api --&gt;
+  
   &lt;exclude name=&quot;Generic.Commenting.DocComment&quot;/&gt;
   &lt;exclude name=&quot;PEAR.Commenting.ClassComment&quot;/&gt;
   &lt;exclude name=&quot;PEAR.Commenting.FunctionComment&quot;/&gt;
