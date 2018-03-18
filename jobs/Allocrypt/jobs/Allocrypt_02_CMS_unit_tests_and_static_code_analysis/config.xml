@@ -55,12 +55,16 @@ sed -i &quot;s/$vagrant_dir_pattern/$current_dir_pattern/g&quot; allocrypt/junit
 pwd
 
 #php code shiffer (checkstyle)
+echo &quot;Executing phpcs&quot;
 phpcs --report=checkstyle --report-file=allocrypt/checkstyle.xml allocrypt/app/
 #php depend
+echo &quot;Executing pdepend&quot;
 pdepend --jdepend-xml=allocrypt/pdepend.xml --jdepend-chart=allocrypt/dependencies.svg --overview-pyramid=allocrypt/overview-pyramid.svg allocrypt/app/
 #php pmd
+echo &quot;Executing phpmd&quot;
 phpmd allocrypt/app/ xml cleancode,codesize,controversial,design,naming,unusedcode --reportfile allocrypt/phpmd.xml
 #php cpd
+echo &quot;Executing phpcpd&quot;
 phpcpd allocrypt/app/ --log-pmd=allocrypt/phpcpd.xml
 </command>
       <unstableReturn>2</unstableReturn>
