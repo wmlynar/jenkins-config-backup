@@ -71,7 +71,7 @@
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
         <string>Allocrypt/Allocrypt_01_device_unit_tests_and_static_code_analysis</string>
-        <string>Allocrypt/Allocrypt_02_CMS_unit_tests_and_static_code_analysis</string>
+        <string>Allocrypt/Allocrypt_02_CMS_unit_tests_and_static_code_analysis_2</string>
         <string>Allocrypt/Allocrypt_03_android_unit_test_and_static_code_analysis</string>
       </jobNames>
       <jobFilters/>
