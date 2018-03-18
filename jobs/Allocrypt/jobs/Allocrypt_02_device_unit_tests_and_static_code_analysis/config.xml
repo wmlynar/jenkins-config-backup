@@ -1,15 +1,300 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
+  <actions/>
+  <description></description>
   <keepDependencies>false</keepDependencies>
   <properties/>
-  <scm class="hudson.scm.NullSCM"/>
-  <canRoam>false</canRoam>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.8.0">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>git@repo.inovatica.com:allocrypt/cms-vm.git</url>
+        <credentialsId>520ebbe4-3996-44db-bc9d-81a0d8367243</credentialsId>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>*/master</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="list"/>
+    <extensions/>
+  </scm>
+  <canRoam>true</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <triggers/>
+  <triggers>
+    <hudson.triggers.TimerTrigger>
+      <spec>59 10 * * * </spec>
+    </hudson.triggers.TimerTrigger>
+  </triggers>
   <concurrentBuild>false</concurrentBuild>
-  <builders/>
-  <publishers/>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>vagrant up
+</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command># execute unit tests
+vagrant ssh -- -t &apos;$HOME/app/allocrypt/vendor/bin/phpunit -c $HOME/app/allocrypt/phpunit.xml&apos;
+</command>
+      <unstableReturn>2</unstableReturn>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>#leave the vagreant up
+#vagrant destroy
+</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>#replace the paths inside xml files generated inside vagrant, so sonar scanner can find the files
+
+vagrant_dir=&apos;/home/vagrant/app/&apos;
+vagrant_dir_pattern=$(echo $vagrant_dir | sed &apos;s/\//\\\//g&apos;)
+current_dir=`pwd`/
+current_dir_pattern=$(echo $current_dir | sed &apos;s/\//\\\//g&apos;)
+
+sed -i &quot;s/$vagrant_dir_pattern/$current_dir_pattern/g&quot; allocrypt/coverage.xml
+sed -i &quot;s/$vagrant_dir_pattern/$current_dir_pattern/g&quot; allocrypt/junit.xml</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>#php code sniffer (checkstyle)
+echo &quot;Executing phpcs&quot;
+#replaced standard configuration with customized configuration
+#if you want to go back to standard configuration uncomment line below
+#phpcs --report=checkstyle --report-file=allocrypt/checkstyle.xml allocrypt/app/
+
+cat &gt; my_phpcs.xml &lt;&lt; EOF
+&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;ruleset name=&quot;Custom Standard&quot; namespace=&quot;MyProject\CS\Standard&quot;&gt;
+ &lt;rule ref=&quot;PEAR&quot;&gt;
+  &lt;exclude name=&quot;PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket&quot;/&gt;
+  &lt;exclude name=&quot;PEAR.Functions.FunctionCallSignature.CloseBracketLine&quot;/&gt;
+  &lt;exclude name=&quot;PEAR.Functions.FunctionCallSignature.Indent&quot;/&gt;
+  &lt;exclude name=&quot;PEAR.Commenting.ClassComment.Missing&quot;/&gt;
+  &lt;exclude name=&quot;PEAR.Commenting.FileComment.Missing&quot;/&gt;
+  &lt;exclude name=&quot;PEAR.Commenting.FunctionComment.Missing&quot;/&gt;
+  &lt;exclude name=&quot;PEAR.Commenting.FunctionComment.SpacingAfterParamType&quot;/&gt;
+  &lt;exclude name=&quot;PEAR.ControlStructures.MultiLineCondition.SpaceBeforeOpenBrace&quot;/&gt;
+  &lt;exclude name=&quot;PEAR.WhiteSpace&quot;/&gt;
+  &lt;exclude name=&quot;PEAR.ControlStructures.MultiLineCondition.StartWithBoolean&quot;/&gt;
+  &lt;exclude name=&quot;PEAR.ControlStructures.MultiLineCondition.CloseBracketNewLine&quot;/&gt;
+  &lt;exclude name=&quot;PEAR.NamingConventions.ValidFunctionName.PrivateNoUnderscore&quot;/&gt;
+  &lt;exclude name=&quot;PEAR.NamingConventions.ValidVariableName.PrivateNoUnderscore&quot;/&gt;
+  &lt;exclude name=&quot;Squiz.Commenting.DocCommentAlignment.SpaceAfterStar&quot;/&gt;
+  &lt;exclude name=&quot;Squiz.Commenting.InlineComment.SpacingBefore&quot;/&gt;
+  &lt;exclude name=&quot;Squiz.Commenting.FunctionComment.SpacingAfterParamType&quot;/&gt;
+  &lt;exclude name=&quot;Generic.Functions.FunctionCallArgumentSpacing.NoSpaceAfterComma&quot;/&gt;
+  &lt;exclude name=&quot;Generic.Commenting.DocComment.SpacingBeforeTags&quot;/&gt;
+  &lt;exclude name=&quot;Generic.Files.LineLength.TooLong&quot;/&gt;
+  &lt;exclude name=&quot;PEAR.Files.IncludingFile.UseInclude&quot;/&gt;
+  
+  &lt;!-- rzeczy wywalone, zeby sie nie przypierdalac, ale do odkomentowania --&gt;
+  
+  &lt;exclude name=&quot;PEAR.ControlStructures.ControlSignature.Found&quot;/&gt;
+  &lt;exclude name=&quot;Generic.Commenting.DocComment.TagValueIndent&quot;/&gt;
+  &lt;exclude name=&quot;Generic.Commenting.DocComment.NonParamGroup&quot;/&gt;
+  
+  &lt;!-- do odkomentowania - dokumentacja api --&gt;
+  
+  &lt;exclude name=&quot;Generic.Commenting.DocComment&quot;/&gt;
+  &lt;exclude name=&quot;PEAR.Commenting.ClassComment&quot;/&gt;
+  &lt;exclude name=&quot;PEAR.Commenting.FunctionComment&quot;/&gt;
+ &lt;/rule&gt;
+&lt;/ruleset&gt;
+EOF
+
+phpcs --standard=my_phpcs.xml --report=checkstyle --report-file=allocrypt/checkstyle.xml allocrypt/app/
+</command>
+      <unstableReturn>2</unstableReturn>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>#php pmd
+echo &quot;Executing phpmd&quot;
+#replaced standard configuration with customized configuration
+#if you want to go back to standard configuration uncomment line below
+#phpmd allocrypt/app/ xml cleancode,codesize,controversial,design,naming,unusedcode --reportfile allocrypt/phpmd.xml --coverage allocrypt/coverage.xml
+
+#exclude rule StaticAccess
+cat &gt; my_cleancode.xml &lt;&lt; EOF
+&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;ruleset name=&quot;My first PHPMD rule set&quot;
+         xmlns=&quot;http://pmd.sf.net/ruleset/1.0.0&quot;
+         xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+         xsi:schemaLocation=&quot;http://pmd.sf.net/ruleset/1.0.0
+                     http://pmd.sf.net/ruleset_xml_schema.xsd&quot;
+         xsi:noNamespaceSchemaLocation=&quot;
+                     http://pmd.sf.net/ruleset_xml_schema.xsd&quot;&gt;
+
+    &lt;rule ref=&quot;rulesets/cleancode.xml&quot;&gt;
+        &lt;exclude name=&quot;StaticAccess&quot; /&gt;
+    &lt;/rule&gt;
+&lt;/ruleset&gt;
+EOF
+
+phpmd allocrypt/app/ xml my_cleancode.xml,codesize,controversial,design,naming,unusedcode --reportfile allocrypt/phpmd.xml --coverage allocrypt/coverage.xml
+</command>
+      <unstableReturn>2</unstableReturn>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>#php depend
+echo &quot;Executing pdepend&quot;
+pdepend --jdepend-xml=allocrypt/pdepend.xml --jdepend-chart=allocrypt/dependencies.svg --overview-pyramid=allocrypt/overview-pyramid.svg allocrypt/app/
+</command>
+      <unstableReturn>2</unstableReturn>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>#php cpd
+echo &quot;Executing phpcpd&quot;
+phpcpd allocrypt/app/ --log-pmd=allocrypt/phpcpd.xml
+</command>
+      <unstableReturn>2</unstableReturn>
+    </hudson.tasks.Shell>
+    <hudson.plugins.sonar.SonarRunnerBuilder plugin="sonar@2.6.1">
+      <project></project>
+      <properties>sonar.language=php
+sonar.projectKey=pl.inovatica.cms
+sonar.projectName=cms
+sonar.projectVersion=1
+sonar.sources=allocrypt/app
+sonar.tests=allocrypt/tests
+sonar.php.tests.reportPath=allocrypt/junit.xml
+sonar.php.coverage.reportPath=allocrypt/coverage.xml
+sonar.profile=Inovatica Php</properties>
+      <javaOpts></javaOpts>
+      <additionalArguments></additionalArguments>
+      <jdk>(Inherit From Job)</jdk>
+      <task></task>
+    </hudson.plugins.sonar.SonarRunnerBuilder>
+  </builders>
+  <publishers>
+    <hudson.plugins.checkstyle.CheckStylePublisher plugin="checkstyle@3.50">
+      <healthy></healthy>
+      <unHealthy></unHealthy>
+      <thresholdLimit>low</thresholdLimit>
+      <pluginName>[CHECKSTYLE] </pluginName>
+      <defaultEncoding></defaultEncoding>
+      <canRunOnFailed>false</canRunOnFailed>
+      <usePreviousBuildAsReference>false</usePreviousBuildAsReference>
+      <useStableBuildAsReference>false</useStableBuildAsReference>
+      <useDeltaValues>false</useDeltaValues>
+      <thresholds plugin="analysis-core@1.95">
+        <unstableTotalAll></unstableTotalAll>
+        <unstableTotalHigh></unstableTotalHigh>
+        <unstableTotalNormal></unstableTotalNormal>
+        <unstableTotalLow></unstableTotalLow>
+        <unstableNewAll></unstableNewAll>
+        <unstableNewHigh></unstableNewHigh>
+        <unstableNewNormal></unstableNewNormal>
+        <unstableNewLow></unstableNewLow>
+        <failedTotalAll></failedTotalAll>
+        <failedTotalHigh></failedTotalHigh>
+        <failedTotalNormal></failedTotalNormal>
+        <failedTotalLow></failedTotalLow>
+        <failedNewAll></failedNewAll>
+        <failedNewHigh></failedNewHigh>
+        <failedNewNormal></failedNewNormal>
+        <failedNewLow></failedNewLow>
+      </thresholds>
+      <shouldDetectModules>false</shouldDetectModules>
+      <dontComputeNew>true</dontComputeNew>
+      <doNotResolveRelativePaths>false</doNotResolveRelativePaths>
+      <pattern>allocrypt/checkstyle.xml</pattern>
+    </hudson.plugins.checkstyle.CheckStylePublisher>
+    <hudson.plugins.pmd.PmdPublisher plugin="pmd@3.50">
+      <healthy></healthy>
+      <unHealthy></unHealthy>
+      <thresholdLimit>low</thresholdLimit>
+      <pluginName>[PMD] </pluginName>
+      <defaultEncoding></defaultEncoding>
+      <canRunOnFailed>false</canRunOnFailed>
+      <usePreviousBuildAsReference>false</usePreviousBuildAsReference>
+      <useStableBuildAsReference>false</useStableBuildAsReference>
+      <useDeltaValues>false</useDeltaValues>
+      <thresholds plugin="analysis-core@1.95">
+        <unstableTotalAll></unstableTotalAll>
+        <unstableTotalHigh></unstableTotalHigh>
+        <unstableTotalNormal></unstableTotalNormal>
+        <unstableTotalLow></unstableTotalLow>
+        <unstableNewAll></unstableNewAll>
+        <unstableNewHigh></unstableNewHigh>
+        <unstableNewNormal></unstableNewNormal>
+        <unstableNewLow></unstableNewLow>
+        <failedTotalAll></failedTotalAll>
+        <failedTotalHigh></failedTotalHigh>
+        <failedTotalNormal></failedTotalNormal>
+        <failedTotalLow></failedTotalLow>
+        <failedNewAll></failedNewAll>
+        <failedNewHigh></failedNewHigh>
+        <failedNewNormal></failedNewNormal>
+        <failedNewLow></failedNewLow>
+      </thresholds>
+      <shouldDetectModules>false</shouldDetectModules>
+      <dontComputeNew>true</dontComputeNew>
+      <doNotResolveRelativePaths>false</doNotResolveRelativePaths>
+      <pattern>allocrypt/phpmd.xml</pattern>
+    </hudson.plugins.pmd.PmdPublisher>
+    <hudson.plugins.dry.DryPublisher plugin="dry@2.50">
+      <healthy></healthy>
+      <unHealthy></unHealthy>
+      <thresholdLimit>low</thresholdLimit>
+      <pluginName>[DRY] </pluginName>
+      <defaultEncoding></defaultEncoding>
+      <canRunOnFailed>false</canRunOnFailed>
+      <usePreviousBuildAsReference>false</usePreviousBuildAsReference>
+      <useStableBuildAsReference>false</useStableBuildAsReference>
+      <useDeltaValues>false</useDeltaValues>
+      <thresholds plugin="analysis-core@1.95">
+        <unstableTotalAll></unstableTotalAll>
+        <unstableTotalHigh></unstableTotalHigh>
+        <unstableTotalNormal></unstableTotalNormal>
+        <unstableTotalLow></unstableTotalLow>
+        <unstableNewAll></unstableNewAll>
+        <unstableNewHigh></unstableNewHigh>
+        <unstableNewNormal></unstableNewNormal>
+        <unstableNewLow></unstableNewLow>
+        <failedTotalAll></failedTotalAll>
+        <failedTotalHigh></failedTotalHigh>
+        <failedTotalNormal></failedTotalNormal>
+        <failedTotalLow></failedTotalLow>
+        <failedNewAll></failedNewAll>
+        <failedNewHigh></failedNewHigh>
+        <failedNewNormal></failedNewNormal>
+        <failedNewLow></failedNewLow>
+      </thresholds>
+      <shouldDetectModules>false</shouldDetectModules>
+      <dontComputeNew>true</dontComputeNew>
+      <doNotResolveRelativePaths>false</doNotResolveRelativePaths>
+      <pattern>allocrypt/phpcpd.xml</pattern>
+      <highThreshold>50</highThreshold>
+      <normalThreshold>25</normalThreshold>
+    </hudson.plugins.dry.DryPublisher>
+    <org.jenkinsci.plugins.cloverphp.CloverPHPPublisher plugin="cloverphp@0.5">
+      <publishHtmlReport>true</publishHtmlReport>
+      <reportDir>coverage</reportDir>
+      <xmlLocation>allocrypt/coverage.xml</xmlLocation>
+      <disableArchiving>false</disableArchiving>
+      <healthyTarget>
+        <methodCoverage>70</methodCoverage>
+        <statementCoverage>80</statementCoverage>
+      </healthyTarget>
+      <unhealthyTarget/>
+      <failingTarget/>
+    </org.jenkinsci.plugins.cloverphp.CloverPHPPublisher>
+    <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.24">
+      <testResults>allocrypt/junit.xml</testResults>
+      <keepLongStdio>false</keepLongStdio>
+      <healthScaleFactor>1.0</healthScaleFactor>
+      <allowEmptyResults>false</allowEmptyResults>
+    </hudson.tasks.junit.JUnitResultArchiver>
+    <hudson.plugins.crap4j.Crap4JPublisher plugin="crap4j@0.9">
+      <reportPattern>allocrypt/crap4j.xml</reportPattern>
+      <healthThreshold></healthThreshold>
+    </hudson.plugins.crap4j.Crap4JPublisher>
+    <hudson.plugins.jdepend.JDependRecorder plugin="jdepend@1.3.0">
+      <configuredJDependFile>allocrypt/pdepend.xml</configuredJDependFile>
+    </hudson.plugins.jdepend.JDependRecorder>
+  </publishers>
   <buildWrappers/>
 </project>
