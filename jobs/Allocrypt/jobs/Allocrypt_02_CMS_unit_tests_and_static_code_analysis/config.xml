@@ -71,6 +71,16 @@ cat &gt; my_phpcs.xml &lt;&lt; EOF
   &lt;exclude name=&quot;PEAR.Commenting.ClassComment.Missing&quot;/&gt;
   &lt;exclude name=&quot;PEAR.Commenting.FileComment.Missing&quot;/&gt;
   &lt;exclude name=&quot;PEAR.Commenting.FunctionComment.Missing&quot;/&gt;
+  
+  &lt;exclude name=&quot;Squiz.Commenting.DocCommentAlignment.SpaceAfterStar&quot;/&gt;
+  
+  &lt;exclude name=&quot;PEAR.Commenting.FunctionComment.SpacingAfterParamType&quot;/&gt;
+  &lt;exclude name=&quot;Squiz.Commenting.FunctionComment.SpacingAfterParamType&quot;/&gt;
+  
+  &lt;exclude name=&quot;Generic.Functions.FunctionCallArgumentSpacing.NoSpaceAfterComma&quot;/&gt;
+
+  &lt;exclude name=&quot;Squiz.Commenting.InlineComment.SpacingBefore&quot;/&gt;
+  
  &lt;/rule&gt;
 &lt;/ruleset&gt;
 EOF
