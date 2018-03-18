@@ -80,6 +80,7 @@ cat &gt; my_phpcs.xml &lt;&lt; EOF
   &lt;exclude name=&quot;Squiz.Commenting.FunctionComment.SpacingAfterParamType&quot;/&gt;
   
   &lt;exclude name=&quot;Generic.Functions.FunctionCallArgumentSpacing.NoSpaceAfterComma&quot;/&gt;
+  &lt;exclude name=&quot;Generic.Commenting.DocComment.SpacingBeforeTags&quot;/&gt;
   &lt;exclude name=&quot;Generic.Files.LineLength.TooLong&quot;/&gt;
  &lt;/rule&gt;
 &lt;/ruleset&gt;
