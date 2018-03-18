@@ -74,7 +74,26 @@ pdepend --jdepend-xml=allocrypt/pdepend.xml --jdepend-chart=allocrypt/dependenci
     <hudson.tasks.Shell>
       <command>#php pmd
 echo &quot;Executing phpmd&quot;
-phpmd allocrypt/app/ xml cleancode,codesize,controversial,design,naming,unusedcode --reportfile allocrypt/phpmd.xml
+#phpmd allocrypt/app/ xml cleancode,codesize,controversial,design,naming,unusedcode --reportfile allocrypt/phpmd.xml
+
+#exclude rule StaticAccess
+cat &gt; my_cleancode.xml &lt;&lt; EOF
+&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;ruleset name=&quot;My first PHPMD rule set&quot;
+         xmlns=&quot;http://pmd.sf.net/ruleset/1.0.0&quot;
+         xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+         xsi:schemaLocation=&quot;http://pmd.sf.net/ruleset/1.0.0
+                     http://pmd.sf.net/ruleset_xml_schema.xsd&quot;
+         xsi:noNamespaceSchemaLocation=&quot;
+                     http://pmd.sf.net/ruleset_xml_schema.xsd&quot;&gt;
+
+    &lt;rule ref=&quot;rulesets/cleancode.xml&quot;&gt;
+        &lt;exclude name=&quot;StaticAccess&quot; /&gt;
+    &lt;/rule&gt;
+&lt;/ruleset&gt;
+EOF
+
+phpmd allocrypt/app/ xml my_cleancode.xml,codesize,controversial,design,naming,unusedcode --reportfile allocrypt/phpmd.xml
 </command>
       <unstableReturn>2</unstableReturn>
     </hudson.tasks.Shell>
