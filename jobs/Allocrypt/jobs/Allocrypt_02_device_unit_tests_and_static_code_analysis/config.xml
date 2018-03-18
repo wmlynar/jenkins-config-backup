@@ -169,7 +169,8 @@ sonar.profile=Inovatica Php</properties>
     </hudson.plugins.sonar.SonarRunnerBuilder>
     <hudson.tasks.Shell>
       <command>sloccount --duplicates --wide --details allocrypt/app &gt; allocrypt/sloccount.sc
-cloc --by-file --xml --out=allocrypt/cloc.xml allocrypt/app</command>
+#cloc --by-file --xml --out=allocrypt/cloc.xml allocrypt/app
+</command>
       <unstableReturn>2</unstableReturn>
     </hudson.tasks.Shell>
   </builders>
@@ -294,7 +295,7 @@ cloc --by-file --xml --out=allocrypt/cloc.xml allocrypt/app</command>
       <allowEmptyResults>false</allowEmptyResults>
     </hudson.tasks.junit.JUnitResultArchiver>
     <hudson.plugins.sloccount.SloccountPublisher plugin="sloccount@1.24">
-      <pattern>allocrypt</pattern>
+      <pattern>allocrypt/sloccount.sc</pattern>
       <encoding></encoding>
       <commentIsCode>false</commentIsCode>
       <numBuildsInGraph>0</numBuildsInGraph>
