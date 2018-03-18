@@ -60,6 +60,8 @@ sed -i &quot;s/$vagrant_dir_pattern/$current_dir_pattern/g&quot; allocrypt/junit
     <hudson.tasks.Shell>
       <command>#php code sniffer (checkstyle)
 echo &quot;Executing phpcs&quot;
+#replaced standard configuration with customized configuration
+#if you want to go back to standard configuration uncomment line below
 #phpcs --report=checkstyle --report-file=allocrypt/checkstyle.xml allocrypt/app/
 
 cat &gt; my_phpcs.xml &lt;&lt; EOF
@@ -109,6 +111,8 @@ phpcs --standard=my_phpcs.xml --report=checkstyle --report-file=allocrypt/checks
     <hudson.tasks.Shell>
       <command>#php pmd
 echo &quot;Executing phpmd&quot;
+#replaced standard configuration with customized configuration
+#if you want to go back to standard configuration uncomment line below
 #phpmd allocrypt/app/ xml cleancode,codesize,controversial,design,naming,unusedcode --reportfile allocrypt/phpmd.xml --coverage allocrypt/coverage.xml
 
 #exclude rule StaticAccess
