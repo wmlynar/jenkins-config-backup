@@ -60,7 +60,7 @@ sed -i &quot;s/$vagrant_dir_pattern/$current_dir_pattern/g&quot; allocrypt/junit
     <hudson.tasks.Shell>
       <command>#php code shiffer (checkstyle)
 echo &quot;Executing phpcs&quot;
-phpcs --report=checkstyle --report-file=allocrypt/checkstyle.xml allocrypt/app/
+phpcs --report=checkstyle --report-file=allocrypt/checkstyle.xml --exclude=PSR2.Methods.FunctionCallSignature.ContentAfterOpenBracket,PSR2.Methods.FunctionCallSignature.CloseBracketLine allocrypt/app/
 </command>
       <unstableReturn>2</unstableReturn>
     </hudson.tasks.Shell>
