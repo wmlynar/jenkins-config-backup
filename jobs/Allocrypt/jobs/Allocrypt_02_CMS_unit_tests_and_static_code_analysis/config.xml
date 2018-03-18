@@ -58,15 +58,24 @@ sed -i &quot;s/$vagrant_dir_pattern/$current_dir_pattern/g&quot; allocrypt/cover
 sed -i &quot;s/$vagrant_dir_pattern/$current_dir_pattern/g&quot; allocrypt/junit.xml</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command>#php code shiffer (checkstyle)
+      <command>#php code sniffer (checkstyle)
 echo &quot;Executing phpcs&quot;
-phpcs --report=checkstyle --report-file=allocrypt/checkstyle.xml --exclude=Functions.FunctionCallSignature.ContentAfterOpenBracket,Functions.FunctionCallSignature.CloseBracketLine,Commenting.ClassComment.Missing,Commenting.FileComment.Missing,Commenting.FunctionComment.Missing allocrypt/app/</command>
-      <unstableReturn>2</unstableReturn>
-    </hudson.tasks.Shell>
-    <hudson.tasks.Shell>
-      <command>#php depend
-echo &quot;Executing pdepend&quot;
-pdepend --jdepend-xml=allocrypt/pdepend.xml --jdepend-chart=allocrypt/dependencies.svg --overview-pyramid=allocrypt/overview-pyramid.svg allocrypt/app/
+#phpcs --report=checkstyle --report-file=allocrypt/checkstyle.xml allocrypt/app/
+
+cat &gt; my_phpcs.xml &lt;&lt; EOF
+&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;ruleset name=&quot;Custom Standard&quot; namespace=&quot;MyProject\CS\Standard&quot;&gt;
+ &lt;rule ref=&quot;PEAR&quot;&gt;
+  &lt;exclude name=&quot;PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket&quot;/&gt;
+  &lt;exclude name=&quot;PEAR.Functions.FunctionCallSignature.CloseBracketLine&quot;/&gt;
+  &lt;exclude name=&quot;PEAR.Commenting.ClassComment.Missing&quot;/&gt;
+  &lt;exclude name=&quot;PEAR.Commenting.FileComment.Missing&quot;/&gt;
+  &lt;exclude name=&quot;PEAR.Commenting.FunctionComment.Missing&quot;/&gt;
+ &lt;/rule&gt;
+&lt;/ruleset&gt;
+EOF
+
+phpcs --standard=my_phpcs.xml --report=checkstyle --report-file=allocrypt/checkstyle.xml allocrypt/app/
 </command>
       <unstableReturn>2</unstableReturn>
     </hudson.tasks.Shell>
@@ -93,6 +102,13 @@ cat &gt; my_cleancode.xml &lt;&lt; EOF
 EOF
 
 phpmd allocrypt/app/ xml my_cleancode.xml,codesize,controversial,design,naming,unusedcode --reportfile allocrypt/phpmd.xml --coverage allocrypt/coverage.xml
+</command>
+      <unstableReturn>2</unstableReturn>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>#php depend
+echo &quot;Executing pdepend&quot;
+pdepend --jdepend-xml=allocrypt/pdepend.xml --jdepend-chart=allocrypt/dependencies.svg --overview-pyramid=allocrypt/overview-pyramid.svg allocrypt/app/
 </command>
       <unstableReturn>2</unstableReturn>
     </hudson.tasks.Shell>
