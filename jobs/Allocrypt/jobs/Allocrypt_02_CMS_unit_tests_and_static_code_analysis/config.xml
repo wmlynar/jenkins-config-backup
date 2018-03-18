@@ -75,6 +75,7 @@ cat &gt; my_phpcs.xml &lt;&lt; EOF
 
  &lt;rule ref=&quot;Squiz&quot;&gt;
   &lt;exclude name=&quot;Squiz.Commenting.DocCommentAlignment.SpaceAfterStar&quot;/&gt;
+  &lt;exclude name=&quot;Squiz.WhiteSpace&quot;/&gt;
  &lt;/rule&gt;
 &lt;/ruleset&gt;
 EOF
