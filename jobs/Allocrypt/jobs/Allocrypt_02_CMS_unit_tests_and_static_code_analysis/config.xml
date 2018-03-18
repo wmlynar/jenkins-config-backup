@@ -85,6 +85,7 @@ cat &gt; my_phpcs.xml &lt;&lt; EOF
   &lt;exclude name=&quot;Generic.Functions.FunctionCallArgumentSpacing.NoSpaceAfterComma&quot;/&gt;
   &lt;exclude name=&quot;Generic.Commenting.DocComment.SpacingBeforeTags&quot;/&gt;
   &lt;exclude name=&quot;Generic.Files.LineLength.TooLong&quot;/&gt;
+  &lt;exclude name=&quot;PEAR.Files.IncludingFile.UseInclude&quot;/&gt;
   
   &lt;!-- rzeczy wywalone, zeby sie nie przypierdalac, ale do odkomentowania --&gt;
   
