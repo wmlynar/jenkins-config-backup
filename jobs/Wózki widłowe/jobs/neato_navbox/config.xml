@@ -43,7 +43,7 @@
   <builders>
     <hudson.tasks.Shell>
       <command>#!/bin/bash
-cp -R inovatica-ros-packages/hectorodom  inovatica-ros-packages/inovatica_map_saver  inovatica-ros-packages/inovatica_orchestrator  inovatica-ros-packages/neato_2dnav  inovatica-ros-packages/neato_driver  inovatica-ros-packages/neato_node src
+cp -R inovatica-ros-packages/hectorodom  inovatica-ros-packages/inovatica_map_saver  inovatica-ros-packages/inovatica_orchestrator  inovatica-ros-packages/neato_2dnav inovatica-ros-packages/neato_node src
 source /opt/ros/kinetic/setup.bash
 catkin_make
 tar cJf neato.tar.xy build devel src bin
