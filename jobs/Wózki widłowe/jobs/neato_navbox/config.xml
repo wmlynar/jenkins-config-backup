@@ -48,7 +48,9 @@ source /opt/ros/kinetic/setup.bash
 catkin_make
 tar cJf neato.tar.xy build devel src bin
 cat  neato.tar.xy &gt;&gt; setup.sh
-chmod +x setup.sh</command>
+chmod +x setup.sh
+systemctl enable neato_box.service
+</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
