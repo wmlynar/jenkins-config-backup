@@ -24,7 +24,7 @@
         <disableSubmodules>false</disableSubmodules>
         <recursiveSubmodules>true</recursiveSubmodules>
         <trackingSubmodules>false</trackingSubmodules>
-        <reference>ssh://repo.inovatica.com/pberner/inovatica-ros-packages.git-ros-packages.git</reference>
+        <reference></reference>
         <parentCredentials>true</parentCredentials>
       </hudson.plugins.git.extensions.impl.SubmoduleOption>
     </extensions>
