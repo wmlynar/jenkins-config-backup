@@ -33,7 +33,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>sudo mvn clean install -P jar-with-dependencies,jacoco</command>
+      <command>mvn clean install -P jar-with-dependencies,jacoco</command>
     </hudson.tasks.Shell>
     <hudson.plugins.sonar.SonarRunnerBuilder plugin="sonar@2.6.1">
       <project></project>
