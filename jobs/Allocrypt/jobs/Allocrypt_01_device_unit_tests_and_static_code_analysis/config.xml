@@ -61,6 +61,9 @@ sonar.junit.reportPaths=target/surefire-reports
       <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
       <injectBuildVariables>false</injectBuildVariables>
     </hudson.tasks.Maven>
+    <hudson.tasks.Shell>
+      <command>sloccount --duplicates --wide --details src/main/java &gt; target/sloccount.sc</command>
+    </hudson.tasks.Shell>
   </builders>
   <publishers>
     <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.24">
@@ -298,7 +301,7 @@ sonar.junit.reportPaths=target/surefire-reports
       <normalThreshold>25</normalThreshold>
     </hudson.plugins.dry.DryPublisher>
     <hudson.plugins.sloccount.SloccountPublisher plugin="sloccount@1.24">
-      <pattern></pattern>
+      <pattern>target/sloccount.sc</pattern>
       <encoding></encoding>
       <commentIsCode>false</commentIsCode>
       <numBuildsInGraph>0</numBuildsInGraph>
