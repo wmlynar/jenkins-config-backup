@@ -54,7 +54,7 @@ sonar.junit.reportPaths=target/surefire-reports
       <task></task>
     </hudson.plugins.sonar.SonarRunnerBuilder>
     <hudson.tasks.Maven>
-      <targets>cobertura:cobertura</targets>
+      <targets>cobertura:cobertura findbugs:findbugs pmd:pmd pmd:cpd checkstyle:checkstyle</targets>
       <mavenName>(Default)</mavenName>
       <usePrivateRepository>false</usePrivateRepository>
       <settings class="jenkins.mvn.DefaultSettingsProvider"/>
