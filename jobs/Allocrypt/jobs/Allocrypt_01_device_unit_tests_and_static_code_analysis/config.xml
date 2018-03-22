@@ -311,6 +311,12 @@ sonar.junit.reportPaths=target/surefire-reports
       <pattern>**/checkstyle-result.xml</pattern>
     </hudson.plugins.checkstyle.CheckStylePublisher>
     <org.jenkinsci.plugins.emotional__jenkins.EmotionalJenkinsPublisher plugin="emotional-jenkins-plugin@1.2"/>
+    <hudson.plugins.covcomplplot.CovComplPlotPublisher plugin="covcomplplot@1.1.1">
+      <analyzer>Cobertura</analyzer>
+      <verbose>false</verbose>
+      <excludeGetterSetter>false</excludeGetterSetter>
+      <locateTopMost>true</locateTopMost>
+    </hudson.plugins.covcomplplot.CovComplPlotPublisher>
   </publishers>
   <buildWrappers/>
 </project>
