@@ -63,6 +63,103 @@ sonar.junit.reportPaths=target/surefire-reports
     </hudson.tasks.Maven>
   </builders>
   <publishers>
+    <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.24">
+      <testResults>target/surefire-reports/*.xml</testResults>
+      <keepLongStdio>false</keepLongStdio>
+      <healthScaleFactor>1.0</healthScaleFactor>
+      <allowEmptyResults>false</allowEmptyResults>
+    </hudson.tasks.junit.JUnitResultArchiver>
+    <hudson.plugins.cobertura.CoberturaPublisher plugin="cobertura@1.12">
+      <coberturaReportFile>**/target/site/cobertura/coverage.xml</coberturaReportFile>
+      <onlyStable>false</onlyStable>
+      <failUnhealthy>false</failUnhealthy>
+      <failUnstable>false</failUnstable>
+      <autoUpdateHealth>false</autoUpdateHealth>
+      <autoUpdateStability>false</autoUpdateStability>
+      <zoomCoverageChart>false</zoomCoverageChart>
+      <maxNumberOfBuilds>0</maxNumberOfBuilds>
+      <failNoReports>true</failNoReports>
+      <lineCoverageTargets>80, 0, 0</lineCoverageTargets>
+      <methodCoverageTargets>80, 0, 0</methodCoverageTargets>
+      <conditionalCoverageTargets>70, 0, 0</conditionalCoverageTargets>
+      <healthyTarget>
+        <targets class="enum-map" enum-type="hudson.plugins.cobertura.targets.CoverageMetric">
+          <entry>
+            <hudson.plugins.cobertura.targets.CoverageMetric>METHOD</hudson.plugins.cobertura.targets.CoverageMetric>
+            <int>8000000</int>
+          </entry>
+          <entry>
+            <hudson.plugins.cobertura.targets.CoverageMetric>LINE</hudson.plugins.cobertura.targets.CoverageMetric>
+            <int>8000000</int>
+          </entry>
+          <entry>
+            <hudson.plugins.cobertura.targets.CoverageMetric>CONDITIONAL</hudson.plugins.cobertura.targets.CoverageMetric>
+            <int>7000000</int>
+          </entry>
+        </targets>
+      </healthyTarget>
+      <unhealthyTarget>
+        <targets class="enum-map" enum-type="hudson.plugins.cobertura.targets.CoverageMetric">
+          <entry>
+            <hudson.plugins.cobertura.targets.CoverageMetric>METHOD</hudson.plugins.cobertura.targets.CoverageMetric>
+            <int>0</int>
+          </entry>
+          <entry>
+            <hudson.plugins.cobertura.targets.CoverageMetric>LINE</hudson.plugins.cobertura.targets.CoverageMetric>
+            <int>0</int>
+          </entry>
+          <entry>
+            <hudson.plugins.cobertura.targets.CoverageMetric>CONDITIONAL</hudson.plugins.cobertura.targets.CoverageMetric>
+            <int>0</int>
+          </entry>
+        </targets>
+      </unhealthyTarget>
+      <failingTarget>
+        <targets class="enum-map" enum-type="hudson.plugins.cobertura.targets.CoverageMetric">
+          <entry>
+            <hudson.plugins.cobertura.targets.CoverageMetric>METHOD</hudson.plugins.cobertura.targets.CoverageMetric>
+            <int>0</int>
+          </entry>
+          <entry>
+            <hudson.plugins.cobertura.targets.CoverageMetric>LINE</hudson.plugins.cobertura.targets.CoverageMetric>
+            <int>0</int>
+          </entry>
+          <entry>
+            <hudson.plugins.cobertura.targets.CoverageMetric>CONDITIONAL</hudson.plugins.cobertura.targets.CoverageMetric>
+            <int>0</int>
+          </entry>
+        </targets>
+      </failingTarget>
+      <sourceEncoding>ASCII</sourceEncoding>
+    </hudson.plugins.cobertura.CoberturaPublisher>
+    <hudson.plugins.jacoco.JacocoPublisher plugin="jacoco@3.0.1">
+      <execPattern>**/**.exec</execPattern>
+      <classPattern>**/classes</classPattern>
+      <sourcePattern>**/src/main/java</sourcePattern>
+      <inclusionPattern></inclusionPattern>
+      <exclusionPattern></exclusionPattern>
+      <skipCopyOfSrcFiles>false</skipCopyOfSrcFiles>
+      <minimumInstructionCoverage>0</minimumInstructionCoverage>
+      <minimumBranchCoverage>0</minimumBranchCoverage>
+      <minimumComplexityCoverage>0</minimumComplexityCoverage>
+      <minimumLineCoverage>0</minimumLineCoverage>
+      <minimumMethodCoverage>0</minimumMethodCoverage>
+      <minimumClassCoverage>0</minimumClassCoverage>
+      <maximumInstructionCoverage>0</maximumInstructionCoverage>
+      <maximumBranchCoverage>0</maximumBranchCoverage>
+      <maximumComplexityCoverage>0</maximumComplexityCoverage>
+      <maximumLineCoverage>0</maximumLineCoverage>
+      <maximumMethodCoverage>0</maximumMethodCoverage>
+      <maximumClassCoverage>0</maximumClassCoverage>
+      <changeBuildStatus>false</changeBuildStatus>
+      <deltaInstructionCoverage>0</deltaInstructionCoverage>
+      <deltaBranchCoverage>0</deltaBranchCoverage>
+      <deltaComplexityCoverage>0</deltaComplexityCoverage>
+      <deltaLineCoverage>0</deltaLineCoverage>
+      <deltaMethodCoverage>0</deltaMethodCoverage>
+      <deltaClassCoverage>0</deltaClassCoverage>
+      <buildOverBuild>false</buildOverBuild>
+    </hudson.plugins.jacoco.JacocoPublisher>
     <hudson.plugins.checkstyle.CheckStylePublisher plugin="checkstyle@3.50">
       <healthy></healthy>
       <unHealthy></unHealthy>
@@ -200,75 +297,6 @@ sonar.junit.reportPaths=target/surefire-reports
       <highThreshold>50</highThreshold>
       <normalThreshold>25</normalThreshold>
     </hudson.plugins.dry.DryPublisher>
-    <hudson.plugins.cobertura.CoberturaPublisher plugin="cobertura@1.12">
-      <coberturaReportFile>**/target/site/cobertura/coverage.xml</coberturaReportFile>
-      <onlyStable>false</onlyStable>
-      <failUnhealthy>false</failUnhealthy>
-      <failUnstable>false</failUnstable>
-      <autoUpdateHealth>false</autoUpdateHealth>
-      <autoUpdateStability>false</autoUpdateStability>
-      <zoomCoverageChart>false</zoomCoverageChart>
-      <maxNumberOfBuilds>0</maxNumberOfBuilds>
-      <failNoReports>true</failNoReports>
-      <lineCoverageTargets>80, 0, 0</lineCoverageTargets>
-      <methodCoverageTargets>80, 0, 0</methodCoverageTargets>
-      <conditionalCoverageTargets>70, 0, 0</conditionalCoverageTargets>
-      <healthyTarget>
-        <targets class="enum-map" enum-type="hudson.plugins.cobertura.targets.CoverageMetric">
-          <entry>
-            <hudson.plugins.cobertura.targets.CoverageMetric>METHOD</hudson.plugins.cobertura.targets.CoverageMetric>
-            <int>8000000</int>
-          </entry>
-          <entry>
-            <hudson.plugins.cobertura.targets.CoverageMetric>LINE</hudson.plugins.cobertura.targets.CoverageMetric>
-            <int>8000000</int>
-          </entry>
-          <entry>
-            <hudson.plugins.cobertura.targets.CoverageMetric>CONDITIONAL</hudson.plugins.cobertura.targets.CoverageMetric>
-            <int>7000000</int>
-          </entry>
-        </targets>
-      </healthyTarget>
-      <unhealthyTarget>
-        <targets class="enum-map" enum-type="hudson.plugins.cobertura.targets.CoverageMetric">
-          <entry>
-            <hudson.plugins.cobertura.targets.CoverageMetric>METHOD</hudson.plugins.cobertura.targets.CoverageMetric>
-            <int>0</int>
-          </entry>
-          <entry>
-            <hudson.plugins.cobertura.targets.CoverageMetric>LINE</hudson.plugins.cobertura.targets.CoverageMetric>
-            <int>0</int>
-          </entry>
-          <entry>
-            <hudson.plugins.cobertura.targets.CoverageMetric>CONDITIONAL</hudson.plugins.cobertura.targets.CoverageMetric>
-            <int>0</int>
-          </entry>
-        </targets>
-      </unhealthyTarget>
-      <failingTarget>
-        <targets class="enum-map" enum-type="hudson.plugins.cobertura.targets.CoverageMetric">
-          <entry>
-            <hudson.plugins.cobertura.targets.CoverageMetric>METHOD</hudson.plugins.cobertura.targets.CoverageMetric>
-            <int>0</int>
-          </entry>
-          <entry>
-            <hudson.plugins.cobertura.targets.CoverageMetric>LINE</hudson.plugins.cobertura.targets.CoverageMetric>
-            <int>0</int>
-          </entry>
-          <entry>
-            <hudson.plugins.cobertura.targets.CoverageMetric>CONDITIONAL</hudson.plugins.cobertura.targets.CoverageMetric>
-            <int>0</int>
-          </entry>
-        </targets>
-      </failingTarget>
-      <sourceEncoding>ASCII</sourceEncoding>
-    </hudson.plugins.cobertura.CoberturaPublisher>
-    <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.24">
-      <testResults>target/surefire-reports/*.xml</testResults>
-      <keepLongStdio>false</keepLongStdio>
-      <healthScaleFactor>1.0</healthScaleFactor>
-      <allowEmptyResults>false</allowEmptyResults>
-    </hudson.tasks.junit.JUnitResultArchiver>
     <hudson.plugins.sloccount.SloccountPublisher plugin="sloccount@1.24">
       <pattern></pattern>
       <encoding></encoding>
@@ -276,38 +304,6 @@ sonar.junit.reportPaths=target/surefire-reports
       <numBuildsInGraph>0</numBuildsInGraph>
       <ignoreBuildFailure>false</ignoreBuildFailure>
     </hudson.plugins.sloccount.SloccountPublisher>
-    <hudson.plugins.jacoco.JacocoPublisher plugin="jacoco@3.0.1">
-      <execPattern>**/**.exec</execPattern>
-      <classPattern>**/classes</classPattern>
-      <sourcePattern>**/src/main/java</sourcePattern>
-      <inclusionPattern></inclusionPattern>
-      <exclusionPattern></exclusionPattern>
-      <skipCopyOfSrcFiles>false</skipCopyOfSrcFiles>
-      <minimumInstructionCoverage>0</minimumInstructionCoverage>
-      <minimumBranchCoverage>0</minimumBranchCoverage>
-      <minimumComplexityCoverage>0</minimumComplexityCoverage>
-      <minimumLineCoverage>0</minimumLineCoverage>
-      <minimumMethodCoverage>0</minimumMethodCoverage>
-      <minimumClassCoverage>0</minimumClassCoverage>
-      <maximumInstructionCoverage>0</maximumInstructionCoverage>
-      <maximumBranchCoverage>0</maximumBranchCoverage>
-      <maximumComplexityCoverage>0</maximumComplexityCoverage>
-      <maximumLineCoverage>0</maximumLineCoverage>
-      <maximumMethodCoverage>0</maximumMethodCoverage>
-      <maximumClassCoverage>0</maximumClassCoverage>
-      <changeBuildStatus>false</changeBuildStatus>
-      <deltaInstructionCoverage>0</deltaInstructionCoverage>
-      <deltaBranchCoverage>0</deltaBranchCoverage>
-      <deltaComplexityCoverage>0</deltaComplexityCoverage>
-      <deltaLineCoverage>0</deltaLineCoverage>
-      <deltaMethodCoverage>0</deltaMethodCoverage>
-      <deltaClassCoverage>0</deltaClassCoverage>
-      <buildOverBuild>false</buildOverBuild>
-    </hudson.plugins.jacoco.JacocoPublisher>
-    <hudson.plugins.crap4j.Crap4JPublisher plugin="crap4j@0.9">
-      <reportPattern></reportPattern>
-      <healthThreshold></healthThreshold>
-    </hudson.plugins.crap4j.Crap4JPublisher>
     <hudson.plugins.jdepend.JDependRecorder plugin="jdepend@1.3.0">
       <configuredJDependFile></configuredJDependFile>
     </hudson.plugins.jdepend.JDependRecorder>
