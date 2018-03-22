@@ -308,7 +308,7 @@ sonar.junit.reportPaths=target/surefire-reports
       <ignoreBuildFailure>false</ignoreBuildFailure>
     </hudson.plugins.sloccount.SloccountPublisher>
     <hudson.plugins.jdepend.JDependRecorder plugin="jdepend@1.3.0">
-      <configuredJDependFile>**/jdepend-report.xml</configuredJDependFile>
+      <configuredJDependFile>target/jdepend-report.xml</configuredJDependFile>
     </hudson.plugins.jdepend.JDependRecorder>
     <org.jenkinsci.plugins.emotional__jenkins.EmotionalJenkinsPublisher plugin="emotional-jenkins-plugin@1.2"/>
   </publishers>
