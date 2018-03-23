@@ -103,14 +103,12 @@ cat &gt; my_phpcs.xml &lt;&lt; EOF
   &lt;exclude name=&quot;Generic.Commenting.DocComment.TagValueIndent&quot;/&gt;
   &lt;exclude name=&quot;Generic.Commenting.DocComment.NonParamGroup&quot;/&gt;
   
-  &lt;!-- do odkomentowania - dokumentacja api 
+  &lt;!-- do odkomentowania - dokumentacja api --&gt;
   
   &lt;exclude name=&quot;Generic.Commenting.DocComment&quot;/&gt;
   &lt;exclude name=&quot;PEAR.Commenting.ClassComment&quot;/&gt;
   &lt;exclude name=&quot;PEAR.Commenting.FileComment&quot;/&gt;
   &lt;exclude name=&quot;PEAR.Commenting.FunctionComment&quot;/&gt;
-  
-  --&gt;
   
  &lt;/rule&gt;
 &lt;/ruleset&gt;
