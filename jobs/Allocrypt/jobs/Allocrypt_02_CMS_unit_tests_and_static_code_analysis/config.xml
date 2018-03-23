@@ -107,7 +107,6 @@ cat &gt; my_phpcs.xml &lt;&lt; EOF
   
   &lt;exclude name=&quot;Generic.Commenting.DocComment&quot;/&gt;
   &lt;exclude name=&quot;PEAR.Commenting.ClassComment&quot;/&gt;
-  &lt;exclude name=&quot;PEAR.Commenting.FileComment&quot;/&gt;
   &lt;exclude name=&quot;PEAR.Commenting.FunctionComment&quot;/&gt;
   
  &lt;/rule&gt;
