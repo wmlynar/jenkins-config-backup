@@ -60,7 +60,10 @@ current_dir=`pwd`/
 current_dir_pattern=$(echo $current_dir | sed &apos;s/\//\\\//g&apos;)
 
 sed -i &quot;s/$vagrant_dir_pattern/$current_dir_pattern/g&quot; allocrypt/coverage.xml
-sed -i &quot;s/$vagrant_dir_pattern/$current_dir_pattern/g&quot; allocrypt/junit.xml</command>
+sed -i &quot;s/$vagrant_dir_pattern/$current_dir_pattern/g&quot; allocrypt/junit.xml
+
+#for coverage complexity scatter plot
+cp allocrypt/coverage.xml allocrypt/clover.xml</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>#php code sniffer (checkstyle)
