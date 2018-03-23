@@ -39,7 +39,7 @@
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
-      <artifacts>target/forkOperatorInterface-1.0-SNAPSHOT.jar</artifacts>
+      <artifacts>target/forkOperatorInterface-1.0-SNAPSHOT.jar, run.cmd</artifacts>
       <allowEmptyArchive>false</allowEmptyArchive>
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>false</fingerprint>
