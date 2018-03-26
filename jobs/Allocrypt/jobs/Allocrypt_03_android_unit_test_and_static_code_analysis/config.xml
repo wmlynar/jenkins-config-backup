@@ -206,7 +206,7 @@ sonar.android.lint.report=app/build/reports/lint-results.xml
     <hudson.plugins.android__emulator.AndroidEmulator plugin="android-emulator@3.0">
       <osVersion>android-24</osVersion>
       <screenDensity>xhdpi</screenDensity>
-      <screenResolution>720 x 1280</screenResolution>
+      <screenResolution>720x1280</screenResolution>
       <targetAbi>armeabi-v7a</targetAbi>
       <deviceDefinition>AllocryptTester</deviceDefinition>
       <sdCardSize>32M</sdCardSize>
