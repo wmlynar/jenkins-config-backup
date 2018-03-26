@@ -45,7 +45,7 @@
       <command>#!/bin/bash
 cp -R inovatica-ros-packages/hectorodom  inovatica-ros-packages/inovatica_map_saver  inovatica-ros-packages/inovatica_orchestrator  inovatica-ros-packages/neato_2dnav inovatica-ros-packages/neato_node src
 source /opt/ros/kinetic/setup.bash
-catkin_make
+catkin_make -DCMAKE_BUILD_TYPE=Release
 tar cJf neato.tar.xy build devel src bin
 cat  neato.tar.xy &gt;&gt; setup.sh
 chmod +x setup.sh
