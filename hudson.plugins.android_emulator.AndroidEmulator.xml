@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <hudson.plugins.android__emulator.AndroidEmulator_-DescriptorImpl plugin="android-emulator@3.0">
-  <androidHome>/Android/Sdk</androidHome>
+  <androidHome>/home/inovatica/Android/Sdk</androidHome>
   <shouldInstallSdk>true</shouldInstallSdk>
   <shouldKeepInWorkspace>false</shouldKeepInWorkspace>
 </hudson.plugins.android__emulator.AndroidEmulator_-DescriptorImpl>
