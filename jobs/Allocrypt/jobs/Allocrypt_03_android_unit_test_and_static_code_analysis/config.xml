@@ -202,5 +202,24 @@ sonar.android.lint.report=app/build/reports/lint-results.xml
       <buildOverBuild>false</buildOverBuild>
     </hudson.plugins.jacoco.JacocoPublisher>
   </publishers>
-  <buildWrappers/>
+  <buildWrappers>
+    <hudson.plugins.android__emulator.AndroidEmulator plugin="android-emulator@3.0">
+      <osVersion>android-24</osVersion>
+      <screenDensity>xhdpi</screenDensity>
+      <screenResolution>720 x 1280</screenResolution>
+      <targetAbi>armeabi-v7a</targetAbi>
+      <deviceDefinition>AllocryptTester</deviceDefinition>
+      <sdCardSize>32M</sdCardSize>
+      <avdNameSuffix>Tester</avdNameSuffix>
+      <hardwareProperties/>
+      <wipeData>false</wipeData>
+      <showWindow>true</showWindow>
+      <useSnapshots>false</useSnapshots>
+      <deleteAfterBuild>false</deleteAfterBuild>
+      <startupDelay>0</startupDelay>
+      <startupTimeout>0</startupTimeout>
+      <commandLineOptions></commandLineOptions>
+      <executable></executable>
+    </hudson.plugins.android__emulator.AndroidEmulator>
+  </buildWrappers>
 </project>
