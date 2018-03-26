@@ -207,7 +207,7 @@ sonar.android.lint.report=app/build/reports/lint-results.xml
       <osVersion>android-24</osVersion>
       <screenDensity>420</screenDensity>
       <screenResolution>1080x1920</screenResolution>
-      <targetAbi>armeabi-v7a</targetAbi>
+      <targetAbi>armeabi</targetAbi>
       <deviceDefinition>AllocryptTester</deviceDefinition>
       <sdCardSize>32M</sdCardSize>
       <avdNameSuffix>Tester</avdNameSuffix>
