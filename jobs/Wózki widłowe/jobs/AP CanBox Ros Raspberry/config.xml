@@ -38,6 +38,23 @@
 
 zip canbox.zip target/canboxros*.jar install.bash</command>
     </hudson.tasks.Shell>
+    <hudson.plugins.sonar.SonarRunnerBuilder plugin="sonar@2.6.1">
+      <project></project>
+      <properties>sonar.projectKey=com.inovatica.canboxros
+sonar.projectName=canboxros
+sonar.projectVersion=1.0-SNAPSHOT
+sonar.sources=src/main/java
+sonar.binaries=target/classes
+sonar.tests=src/test/java
+sonar.libraries=src/main/resources/bcpg-lw-jdk15on-1.56.jar,src/main/resources/cryptlib.jar,src/main/resources/pgplib-3.1.2.jar
+sonar.java.binaries=target/classes
+sonar.junit.reportPaths=target/surefire-reports
+#sonar.cobertura.reportPath=target/site/cobertura/coverage.xml</properties>
+      <javaOpts></javaOpts>
+      <additionalArguments></additionalArguments>
+      <jdk>(Inherit From Job)</jdk>
+      <task></task>
+    </hudson.plugins.sonar.SonarRunnerBuilder>
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
