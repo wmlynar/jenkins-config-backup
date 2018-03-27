@@ -206,7 +206,7 @@ sonar.android.lint.report=app/build/reports/lint-results.xml
     <hudson.plugins.android__emulator.AndroidEmulator plugin="android-emulator@3.0">
       <avdName>Nexus_5X_API_24</avdName>
       <hardwareProperties/>
-      <wipeData>false</wipeData>
+      <wipeData>true</wipeData>
       <showWindow>false</showWindow>
       <useSnapshots>false</useSnapshots>
       <deleteAfterBuild>false</deleteAfterBuild>
