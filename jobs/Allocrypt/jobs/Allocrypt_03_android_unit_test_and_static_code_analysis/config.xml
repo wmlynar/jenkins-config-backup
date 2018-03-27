@@ -204,14 +204,7 @@ sonar.android.lint.report=app/build/reports/lint-results.xml
   </publishers>
   <buildWrappers>
     <hudson.plugins.android__emulator.AndroidEmulator plugin="android-emulator@3.0">
-      <osVersion>4.4</osVersion>
-      <screenDensity>160</screenDensity>
-      <screenResolution>HVGA</screenResolution>
-      <deviceLocale>en_US</deviceLocale>
-      <targetAbi>x86</targetAbi>
-      <deviceDefinition>tester</deviceDefinition>
-      <sdCardSize>64M</sdCardSize>
-      <avdNameSuffix>_allo</avdNameSuffix>
+      <avdName>Nexus_S_API_24</avdName>
       <hardwareProperties/>
       <wipeData>false</wipeData>
       <showWindow>false</showWindow>
