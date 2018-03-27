@@ -212,7 +212,7 @@ sonar.android.lint.report=app/build/reports/lint-results.xml
       <deleteAfterBuild>false</deleteAfterBuild>
       <startupDelay>0</startupDelay>
       <startupTimeout>0</startupTimeout>
-      <commandLineOptions>-no-boot-anim -wipe-data -verbose -noaudio</commandLineOptions>
+      <commandLineOptions></commandLineOptions>
       <executable></executable>
     </hudson.plugins.android__emulator.AndroidEmulator>
   </buildWrappers>
