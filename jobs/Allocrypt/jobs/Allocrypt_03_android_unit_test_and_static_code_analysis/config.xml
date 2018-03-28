@@ -34,7 +34,8 @@
   <builders>
     <hudson.tasks.Shell>
       <command>export ANDROID_HOME=/home/inovatica/Android/Sdk
-echo sdk.dir=/home/inovatica/Android/Sdk &gt; local.properties</command>
+echo sdk.dir=/home/inovatica/Android/Sdk &gt; local.properties
+$ANDROID_HOME/emulator/.emulator -avd Nexus_S_API_24</command>
     </hudson.tasks.Shell>
     <hudson.plugins.gradle.Gradle plugin="gradle@1.28">
       <switches></switches>
@@ -202,18 +203,5 @@ sonar.android.lint.report=app/build/reports/lint-results.xml
       <buildOverBuild>false</buildOverBuild>
     </hudson.plugins.jacoco.JacocoPublisher>
   </publishers>
-  <buildWrappers>
-    <hudson.plugins.android__emulator.AndroidEmulator plugin="android-emulator@3.0">
-      <avdName>Nexus_S_API_24</avdName>
-      <hardwareProperties/>
-      <wipeData>false</wipeData>
-      <showWindow>false</showWindow>
-      <useSnapshots>false</useSnapshots>
-      <deleteAfterBuild>false</deleteAfterBuild>
-      <startupDelay>0</startupDelay>
-      <startupTimeout>0</startupTimeout>
-      <commandLineOptions>-avd Nexus_S_API_24  -no-window</commandLineOptions>
-      <executable></executable>
-    </hudson.plugins.android__emulator.AndroidEmulator>
-  </buildWrappers>
+  <buildWrappers/>
 </project>
