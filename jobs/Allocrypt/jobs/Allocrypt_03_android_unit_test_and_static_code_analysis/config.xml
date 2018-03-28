@@ -35,7 +35,7 @@
     <hudson.tasks.Shell>
       <command>export ANDROID_HOME=/home/inovatica/Android/Sdk
 echo sdk.dir=/home/inovatica/Android/Sdk &gt; local.propertie
-/home/inovatica/Android/Sdk/emulator/.emulator -avd Nexus_S_API_24</command>
+/home/inovatica/Android/Sdk/emulator/./emulator -avd Nexus_S_API_24</command>
     </hudson.tasks.Shell>
     <hudson.plugins.gradle.Gradle plugin="gradle@1.28">
       <switches></switches>
