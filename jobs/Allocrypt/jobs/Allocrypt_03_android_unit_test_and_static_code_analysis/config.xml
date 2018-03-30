@@ -38,7 +38,7 @@ echo sdk.dir=/home/inovatica/Android/Sdk &gt; local.properties</command>
     </hudson.tasks.Shell>
     <hudson.plugins.gradle.Gradle plugin="gradle@1.28">
       <switches></switches>
-      <tasks>clean build --exclude-task connectedDebugAndroidTest</tasks>
+      <tasks>build</tasks>
       <rootBuildScriptDir></rootBuildScriptDir>
       <buildFile></buildFile>
       <gradleName>(Default)</gradleName>
