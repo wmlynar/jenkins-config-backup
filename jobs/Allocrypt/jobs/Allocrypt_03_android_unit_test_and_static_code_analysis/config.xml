@@ -174,7 +174,7 @@ sonar.android.lint.report=app/build/reports/lint-results.xml
       <allowEmptyResults>false</allowEmptyResults>
     </hudson.tasks.junit.JUnitResultArchiver>
     <hudson.plugins.jacoco.JacocoPublisher plugin="jacoco@3.0.1">
-      <execPattern>app/build/jacoco/testDebugUnitTest.exec</execPattern>
+      <execPattern>app/build/jacoco/testReleaseUnitTest.exec</execPattern>
       <classPattern>app/build/intermediates/classes/debug</classPattern>
       <sourcePattern>app/src/main/java</sourcePattern>
       <inclusionPattern></inclusionPattern>
