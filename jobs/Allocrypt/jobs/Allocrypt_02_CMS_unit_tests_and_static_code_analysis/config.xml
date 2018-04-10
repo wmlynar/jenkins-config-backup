@@ -317,7 +317,7 @@ sonar.profile=Inovatica Php</properties>
     <org.jenkinsci.plugins.emotional__jenkins.EmotionalJenkinsPublisher plugin="emotional-jenkins-plugin@1.2"/>
     <hudson.plugins.covcomplplot.CovComplPlotPublisher plugin="covcomplplot@1.1.1">
       <analyzer>Clover</analyzer>
-      <verbose>false</verbose>
+      <verbose>true</verbose>
       <excludeGetterSetter>true</excludeGetterSetter>
       <locateTopMost>false</locateTopMost>
     </hudson.plugins.covcomplplot.CovComplPlotPublisher>
