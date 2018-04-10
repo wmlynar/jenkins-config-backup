@@ -315,13 +315,13 @@ sonar.profile=Inovatica Php</properties>
     <hudson.plugins.jdepend.JDependRecorder plugin="jdepend@1.3.0">
       <configuredJDependFile>allocrypt/pdepend.xml</configuredJDependFile>
     </hudson.plugins.jdepend.JDependRecorder>
-    <org.jenkinsci.plugins.emotional__jenkins.EmotionalJenkinsPublisher plugin="emotional-jenkins-plugin@1.2"/>
     <hudson.plugins.covcomplplot.CovComplPlotPublisher plugin="covcomplplot@1.1.1">
       <analyzer>Clover</analyzer>
       <verbose>true</verbose>
       <excludeGetterSetter>true</excludeGetterSetter>
       <locateTopMost>false</locateTopMost>
     </hudson.plugins.covcomplplot.CovComplPlotPublisher>
+    <org.jenkinsci.plugins.emotional__jenkins.EmotionalJenkinsPublisher plugin="emotional-jenkins-plugin@1.2"/>
   </publishers>
   <buildWrappers/>
 </project>
