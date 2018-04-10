@@ -39,7 +39,7 @@
     <hudson.tasks.Shell>
       <command># get latest code
 vagrant ssh -- -t &apos;cd $HOME/app/allocrypt; git pull&apos;
-vagrant ssh -- -t &apos;cd $HOME/app/allocrypt; composer install&apos;
+vagrant ssh -- -t &apos;cd $HOME/app/allocrypt; composer install --quiet&apos;
 # remove gpg keyring
 vagrant ssh -- -t &apos;rm -rf $HOME/app/allocrypt/.gnupg&apos;
 # execute unit tests
